@@ -1,16 +1,32 @@
 // app.js, head module
 angular.module('scape-home')
-  .component('app', {
-    templateUrl: 'scr/templates/app.html',
-    controller: 'AppController'
+  .service('courseFetcher', function($http, $window) {
+    this.search = function(query, callback) {
+      //should examine data and respond with a set referring to window.dummyData for now
+      console.log(query);
+    }
   })
-
-  .controller('AppController', function(courseFetcher) {
+  .controller('AppController', ['courseFetcher', function(courseFetcher) {
+    this.courses = window.dummyData;
+    this.currentCourse = this.courses[0];
     this.fetchService = courseFetcher;
-  });
+    this.fetchResults = (data) => {
+      this.courses = data;
+      this.currentCourse = data[0];
+    };
+    this.selectCourse = (course) => {
+      this.currentCourse = course;
+    };
 
-  this.selectCourse = (course) => {
-    this.currentCourse = course;
-  };
+    courseFetcher.search('Milwaukee', this.fetchResults);
 
-  courseFetcher.search('Milwaukee', this.searchResults);
+  }])
+
+  .component('app', {
+    templateUrl: '/src/templates/app.html',
+    controller: 'AppController'
+});
+
+
+
+

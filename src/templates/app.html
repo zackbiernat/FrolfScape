@@ -1,7 +1,7 @@
 <div id="app container">
   <nav class="navbar">
     <div class="col-md-6 col-md-offset-3">
-      <search service="$ctrl.searchService" result="$ctrl.searchResults"><h5><em>Search Bar</em></h5></search>
+      <search-bar service="$ctrl.fetchService" result="$ctrl.fetchResults"><h5><em>Search Bar</em></h5></search-bar>
     </div>
   </nav>
   <div class="row">
@@ -9,10 +9,10 @@
       <selected-course course="$ctrl.currentCourse"><h5><em>Course Headline</em></h5></selected-course>
     </div>
     <div class="col-md-5">
-      <score-list on-click="$ctrl.selectUser" users="$ctrl.users"><h5><em>shows posted scores</em></h5></score-list>
+      <score-board on-click="$ctrl.selectUser" users="$ctrl.users"><h5><em>shows posted scores</em></h5></score-board>
     </div>
      <div class="col-md-4">
-      <nearby-courses on-click="$ctrl.selectCourse" nearbys="$ctrl.nearbys"><h5><em>shows nearby courses</em></h5></nearby-courses>
+      <nearby-courses on-click="$ctrl.selectCourse" courses="$ctrl.courses"><h5><em>shows nearby courses</em></h5></nearby-courses>
     </div>
   <div>
 </div>
