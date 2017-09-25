@@ -6,12 +6,13 @@
   </nav>
   <div class="row">
     <div class="col-md-7">
-      <selected-course course="$ctrl.currentCourse"><h5><em>Course Headline</em></h5></selected-course>
+      <head-course course="$ctrl.currentCourse"><h5><em>Course Headline</em></h5></head-course>
     </div>
     <div class="col-md-5">
-      <score-board on-click="$ctrl.selectUser" users="$ctrl.users"><h5><em>shows posted scores</em></h5></score-board>
+      <review-list on-click="$ctrl.selectUser" users="$ctrl.users" reviews="$ctrl.reviews"><h5><em>shows some reviews</em></h5></review-list>
     </div>
      <div class="col-md-4">
+     <h3 class="nearby-list">Courses near here</h3>
       <nearby-courses on-click="$ctrl.selectCourse" courses="$ctrl.courses"><h5><em>shows nearby courses</em></h5></nearby-courses>
     </div>
   <div>

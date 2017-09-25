@@ -9,6 +9,7 @@ angular.module('scape-home')
   .controller('AppController', ['courseFetcher', function(courseFetcher) {
     this.courses = window.dummyData;
     this.currentCourse = this.courses[0];
+    this.reviews = this.currentCourse.reviews;
     this.fetchService = courseFetcher;
     this.fetchResults = (data) => {
       this.courses = data;

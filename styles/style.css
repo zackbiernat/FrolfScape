@@ -89,6 +89,20 @@ body {
   height: 50px;
 }
 
+#head-card {
+  width: 75%;
+  height: 75%;
+}
+
+.nearby-list {
+  padding: 10px;
+}
+
+.small-heart {
+  width: 10px;
+  height: 10px;
+}
+
 h5 {
   border: 2px solid red;
   text-align: center;

@@ -1,0 +1,78 @@
+<div class="head-course">
+  <div class="video-player-details">
+     <img id="head-card" class="media-object" ng-src={{$ctrl.course.info.imageUrl}} />
+    <h2>{{$ctrl.course.info.name}}</h2>
+    <div>{{$ctrl.course.info.description}}</div>
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
+        <div class="col-sm-10">
+        <input type="name" class="form-control" id="inputName" placeholder="What's your name?">
+        Rating
+          <div class="rating-selection">
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option4"> 4
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option5"> 5
+            </label>
+          </div>
+          Score
+            <select class="form-control" placeholder="select your score">
+              <option>-18</option>
+              <option>-17</option>
+              <option>-16</option>
+              <option>-15</option>
+              <option>-14</option>
+              <option>-13</option>
+              <option>-12</option>
+              <option>-11</option>
+              <option>-10</option>
+              <option>-9</option>
+              <option>-8</option>
+              <option>-7</option>
+              <option>-6</option>
+              <option>-5</option>
+              <option>-4</option>
+              <option>-3</option>
+              <option>-2</option>
+              <option>-1</option>
+              <option>0</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+              <option>11</option>
+              <option>12</option>
+              <option>13</option>
+              <option>14</option>
+              <option>15</option>
+            </select>
+          </div>
+        </div>
+        </div>
+    </div>
+    <div class="submit-review">
+      <textarea class="form-control" rows="3" placeholder="Leave a review"></textarea>
+      <button id="submit-review-button" type="button" class="btn" ng-click="$ctrl.handleSubmit()">
+        <span>Submit Review</span>
+      </button>
+    </div>
+  </form>
+  </div>
+</div>
