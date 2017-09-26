@@ -103,6 +103,47 @@ body {
   height: 10px;
 }
 
+.review-list-entry {
+  border: 2px solid red;
+  padding: 5px;
+  margin-bottom: 20px;
+  margin-right: 1px;
+}
+
+.review-list-entry-username {
+  font-size: 30px
+}
+
+.review-list-entry-text {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  border: 1px;
+}
+
+.head-course-details {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.head-course {
+  margin-left: 20px;
+}
+
+.head-course-name {
+  margin-top: 15px;
+}
+
+.head-course-description {
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+
+.head-course-address {
+  font-size: 12px;
+  margin-left: 20px;
+}
+
 h5 {
   border: 2px solid red;
   text-align: center;

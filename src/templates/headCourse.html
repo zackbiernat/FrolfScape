@@ -1,8 +1,9 @@
 <div class="head-course">
-  <div class="video-player-details">
+  <div class="head-course-details">
      <img id="head-card" class="media-object" ng-src={{$ctrl.course.info.imageUrl}} />
-    <h2>{{$ctrl.course.info.name}}</h2>
-    <div>{{$ctrl.course.info.description}}</div>
+    <h2 class="head-course-name">{{$ctrl.course.info.name}}<a href="https://maps.google.com/?q={{$ctrl.course.info.address}}" class="head-course-address">{{$ctrl.course.info.address}}</a></h2>
+    <div class="head-course-description">{{$ctrl.course.info.description}}</div>
+
     <form class="form-horizontal">
       <div class="form-group">
         <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
@@ -63,16 +64,18 @@
               <option>14</option>
               <option>15</option>
             </select>
+            <div class="submit-review">Review
+              <textarea class="form-control" rows="3" placeholder="Leave a review"></textarea>
+              <button id="submit-review-button" type="button" class="btn" ng-click="$ctrl.handleSubmit()">
+                <span>Submit Review</span>
+              </button>
+            </div>
           </div>
+
         </div>
         </div>
     </div>
-    <div class="submit-review">
-      <textarea class="form-control" rows="3" placeholder="Leave a review"></textarea>
-      <button id="submit-review-button" type="button" class="btn" ng-click="$ctrl.handleSubmit()">
-        <span>Submit Review</span>
-      </button>
-    </div>
+
   </form>
   </div>
 </div>

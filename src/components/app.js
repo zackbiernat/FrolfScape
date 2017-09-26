@@ -14,9 +14,11 @@ angular.module('scape-home')
     this.fetchResults = (data) => {
       this.courses = data;
       this.currentCourse = data[0];
+      this.reviews = this.currentCourse.reviews;
     };
     this.selectCourse = (course) => {
       this.currentCourse = course;
+      this.reviews = this.currentCourse.reviews;
     };
 
     courseFetcher.search('Milwaukee', this.fetchResults);
