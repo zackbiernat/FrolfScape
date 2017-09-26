@@ -1,11 +1,11 @@
 <li class="course-list-entry media">
   <div class="media-left">
-    <img id="entry-card" class="media-object" ng-src={{$ctrl.course.info.imageUrl}} />
+    <img id="entry-card" class="media-object" ng-src={{$ctrl.course.imageUrl}} />
   </div>
   <div class="media-body">
     <a href="" class="course-list-entry-title"
       ng-click="$ctrl.handleClick($ctrl.course)"
-      >{{$ctrl.course.info.name}}</a>
-    <div class="video-list-entry-detail">{{$ctrl.course.info.description}}</div>
+      >{{$ctrl.course.name}}</a>
+    <div class="video-list-entry-detail">{{$ctrl.course.description}}</div>
   </div>
 </li>

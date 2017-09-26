@@ -1,50 +1,51 @@
 // app.js, head module
+
+
 angular.module('scape-home')
   //SERVICES
 
   //search engine service
-  .service('courseFetcher', function() {
+  .service('courseFetcher', function($http, $window) {
     this.search = function(query, callback) {
-      //should examine data and respond with a set referring to window.dummyData for now
+      let urlString = 'http://127.0.0.1:3000/courses'
+      if (query) {
+        urlString += '?name='+query
+      }
+      console.log('this guy', urlString)
+      $http.get(urlString,
+        {
+          headers: {
+            'access-control-allow-origin': '*',
+            //'Range': 'data=0-1' TODO, figure out range
+          }
+        }
+      ).then(function successCallback(response) {
+          console.log('response', response);
+          callback(response.data);
+      }, function errorCallback(response) {
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+        });
       console.log(query);
     }
   })
-  .service('postReview', function() {
-    this.renderPost = (params) => {
-      let review = {
-        text: params.input.text,
-        username: params.input.username,
-        rating: params.input.rating,
-        strokes: params.input.strokes
-      };
-      console.log(review);
-      console.log('this',this)
-      this.currentCourse.reviews.push(review);
-    }
-  })
 
-  //Post review service
-
-  .controller('AppController', ['courseFetcher', function(courseFetcher) {
-    //set default values
-    this.courses = window.dummyData;
-    this.currentCourse = this.courses[0];
-    this.reviews = this.currentCourse.reviews;
-
+  .controller('AppController', function(courseFetcher) {
     //define methods to be passed down
 
     //search engine
     this.fetchService = courseFetcher;
     this.fetchResults = (data) => {
+      console.log('this',this)
       this.courses = data;
       this.currentCourse = data[0];
-      this.reviews = this.currentCourse.reviews;
+      // this.reviews = this.currentCourse.reviews; TODO fix reviews
     };
 
     //clickable course selector
     this.selectCourse = (course) => {
       this.currentCourse = course;
-      this.reviews = this.currentCourse.reviews;
+      //this.reviews = this.currentCourse.reviews; TODO fix reviews
     };
 
     //review post handler
@@ -55,14 +56,13 @@ angular.module('scape-home')
         rating: params.input.rating,
         strokes: params.input.strokes
       };
-      console.log(review);
-      console.log('this',this)
+
       this.currentCourse.reviews.unshift(review);
     }
 
-    courseFetcher.search('Milwaukee', this.fetchResults);
+    courseFetcher.search('Dretzka', this.fetchResults);
 
-  }])
+  })
 
   .component('app', {
     templateUrl: '/src/templates/app.html',
