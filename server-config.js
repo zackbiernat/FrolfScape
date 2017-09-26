@@ -14,13 +14,29 @@ const Courses = sequelize.define('Courses', {
 
 let results = [];
 
-sequelize.query("SELECT * FROM `Courses`", { type: sequelize.QueryTypes.SELECT})
-  .then(course => {
-    results.push(course)
-  })
-results.push('it works!!');
+// sequelize.query("SELECT * FROM `Courses`", { type: sequelize.QueryTypes.SELECT})
+//   .then(course => {
+//     results.push(course)
+//   })
+//results.push('it works!!');
 app.get('/courses', function(req, res, next) {
-  res.send(results[0]);
+  console.log(req.query);
+  let query = req.query.name;
+  if (query.charAt(query.length -1) === '/') {
+    query = query.slice(0, -1);
+  }
+  // sequelize.query("SELECT * FROM `Courses` WHERE name = `query`", { type: sequelize.QueryTypes.SELECT})
+  // .then(course => {
+  //   results.push(course)
+  // })
+  Courses.findAll({
+    where: {
+      name: query
+    }
+  }).then(function(result) {
+    console.log(result[0].dataValues)
+  })
+  res.send(results);
 });
 
 module.exports = {
