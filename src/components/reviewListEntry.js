@@ -7,6 +7,7 @@ angular.module('scape-home')
     bindings: {
       review: '<',
     },
-
+    controller: 'EntryController',
     templateUrl: 'src/templates/reviewListEntry.html'
 })
+

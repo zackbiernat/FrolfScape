@@ -3,9 +3,9 @@
     <img id="entry-card" class="media-object" ng-src={{$ctrl.course.info.imageUrl}} />
   </div>
   <div class="media-body">
-    <div class="course-list-entry-title"
+    <a href="" class="course-list-entry-title"
       ng-click="$ctrl.handleClick($ctrl.course)"
-      >{{$ctrl.course.info.name}}</div>
+      >{{$ctrl.course.info.name}}</a>
     <div class="video-list-entry-detail">{{$ctrl.course.info.description}}</div>
   </div>
 </li>

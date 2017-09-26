@@ -2,33 +2,27 @@
   <div class="head-course-details">
      <img id="head-card" class="media-object" ng-src={{$ctrl.course.info.imageUrl}} />
     <h2 class="head-course-name">{{$ctrl.course.info.name}}<a href="https://maps.google.com/?q={{$ctrl.course.info.address}}" class="head-course-address">{{$ctrl.course.info.address}}</a></h2>
-    <div class="head-course-description">{{$ctrl.course.info.description}}</div>
+    <div class="head-course-description"><em>{{$ctrl.course.info.description}}</em></div>
 
     <form class="form-horizontal">
       <div class="form-group">
         <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
         <div class="col-sm-10">
-        <input type="name" class="form-control" id="inputName" placeholder="What's your name?">
+        <input type="name" class="form-control" id="inputName" placeholder="What's your name?" ng-model="$ctrl.input.username">
         Rating
-          <div class="rating-selection">
-            <label class="radio-inline">
-              <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
-            </label>
-            <label class="radio-inline">
-              <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
-            </label>
-            <label class="radio-inline">
-              <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
-            </label>
-            <label class="radio-inline">
-              <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option4"> 4
-            </label>
-            <label class="radio-inline">
-              <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option5"> 5
-            </label>
+          <div class="rating-selection" >
+            <form>
+              <label class="radio-inline">
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" ng-model="$ctrl.input.rating" value=1 > 1
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" ng-model="$ctrl.input.rating" value=2> 2
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio3" ng-model="$ctrl.input.rating" value=3> 3
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio3" ng-model="$ctrl.input.rating" value=4> 4
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio3" ng-model="$ctrl.input.rating" value=5> 5
+              </label>
+            </form>
           </div>
           Score
-            <select class="form-control" placeholder="select your score">
+            <select class="form-control" placeholder="select your score" ng-model="$ctrl.input.strokes">
               <option>-18</option>
               <option>-17</option>
               <option>-16</option>
@@ -65,7 +59,7 @@
               <option>15</option>
             </select>
             <div class="submit-review">Review
-              <textarea class="form-control" rows="3" placeholder="Leave a review"></textarea>
+              <textarea class="form-control" rows="3" placeholder="Leave a review" ng-model="$ctrl.input.text"></textarea>
               <button id="submit-review-button" type="button" class="btn" ng-click="$ctrl.handleSubmit()">
                 <span>Submit Review</span>
               </button>
