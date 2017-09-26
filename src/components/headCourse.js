@@ -2,10 +2,12 @@
 
 angular.module('scape-home')
   .component('headCourse', {
-    // TODO
+
     bindings: {
-      course: '<'
+      course: '<',
+      service: '<'
     },
+
     templateUrl: 'src/templates/headCourse.html',
     controller: 'ReviewController'
   })
@@ -13,8 +15,8 @@ angular.module('scape-home')
   .controller('ReviewController', function() {
     var outer = this;
     this.handleSubmit = function(target) {
-
-      console.log(outer)
+      this.service(outer);
       //outer.onClick(target);
     };
+
   });

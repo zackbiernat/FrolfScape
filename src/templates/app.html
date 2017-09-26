@@ -6,7 +6,7 @@
   </nav>
   <div class="row">
     <div class="col-md-7">
-      <head-course course="$ctrl.currentCourse"><h5><em>Course Headline</em></h5></head-course>
+      <head-course service="$ctrl.renderPost" course="$ctrl.currentCourse"><h5><em>Course Headline</em></h5></head-course>
     </div>
     <div class="col-md-5">
       <review-list on-click="$ctrl.selectUser" users="$ctrl.users" reviews="$ctrl.reviews"><h5><em>shows some reviews</em></h5></review-list>
