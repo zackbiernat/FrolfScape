@@ -1,40 +1,29 @@
-ar express = require('express');
-var partials = require('express-partials');
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
-var session = require('express-session');
-var util = require('./lib/utility');
-
-var handler = require('./lib/request-handler');
-
+var express = require('express');
 var app = express();
+var Sequelize = require('sequelize');
+var sequelize = new Sequelize('FrolfScape', 'zack', 'password', { dialect: 'sqlite', storage: 'lib/data/dataset.sqlite' });
 
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
-app.use(partials());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(__dirname + '/public'));
-app.use(cookieParser('shhhh, very secret'));
-app.use(session({
-  secret: 'shhh, it\'s a secret',
-  resave: false,
-  saveUninitialized: true
-}));
+const Courses = sequelize.define('Courses', {
+  name: Sequelize.STRING,
+  imageUrl: Sequelize.STRING,
+  description: Sequelize.STRING,
+  holes: Sequelize.INTEGER,
+  isFree: Sequelize.BOOLEAN,
+  address: Sequelize.STRING
+});
 
-app.get('/', util.checkUser, handler.renderIndex);
-app.get('/create', util.checkUser, handler.renderIndex);
+let results = [];
 
-app.get('/links', util.checkUser, handler.fetchLinks);
-app.post('/links', handler.saveLink);
+sequelize.query("SELECT * FROM `Courses`", { type: sequelize.QueryTypes.SELECT})
+  .then(course => {
+    results.push(course)
+  })
+results.push('it works!!');
+app.get('/courses', function(req, res, next) {
+  res.send(results[0]);
+});
 
-app.get('/login', handler.loginUserForm);
-app.post('/login', handler.loginUser);
-app.get('/logout', handler.logoutUser);
-
-app.get('/signup', handler.signupUserForm);
-app.post('/signup', handler.signupUser);
-
-app.get('/*', handler.navToLink);
-
-module.exports = app;
+module.exports = {
+  app: app,
+  Courses: Courses
+};
