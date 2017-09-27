@@ -1,9 +1,12 @@
-<div class="search-bar">
-  <input class="form-control" type="text" ng-model="$ctrl.input"
+<div class="input-group search">
+  <input type="text" class="form-control" type="text" ng-model="$ctrl.input"
   ng-model-options="{ debounce: 500 }"
-  ng-change="$ctrl.handleKeyPress($ctrl.input)"/>
-
-  <button ng-click="$ctrl.handleClick()" class="btn">
+  ng-change="$ctrl.handleKeyPress($ctrl.input)" placeholder="Find a course..." />
+  <div class="input-group-btn">
+    <!-- Buttons -->
+    <button ng-click="$ctrl.handleClick()" class="btn">
     <span class="glyphicon glyphicon-search"></span>
   </button>
+  </div>
 </div>
+

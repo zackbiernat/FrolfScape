@@ -40,6 +40,7 @@ app.use(express.static(__dirname + "/FrolfScape"));
 app.get('/courses', function(req, res, next) {
   let results = [];
   let query = req.query.name;
+
   if (!query) {
     console.log('No query made, sending all data');
     sequelize.query("SELECT * FROM `Courses`", { type: sequelize.QueryTypes.SELECT})
@@ -49,17 +50,26 @@ app.get('/courses', function(req, res, next) {
     })
 
   } else {
-    if (query.charAt(query.length -1) === '/') {
-      query = query.slice(0, -1);
-    }
 
     Courses.findAll({
       where: {
-        name: query
+        $or: [{
+          city: {
+            $like: '%'+query+'%'
+          }
+        },
+        {
+          name: {
+            $like: '%'+query+'%'
+          }
+        }
+        ]
       }
     }).then(function(result) {
-      console.log(results)
-      results.push(result[0].dataValues);
+      console.log('result', result)
+      for (var i = 0; i < result.length; i++) {
+        results.push(result[i].dataValues);
+      }
       res.send(results);
     })
 
@@ -75,7 +85,7 @@ app.get('/reviews', function(req, res, next) {
 
   Reviews.findAll({
     where: {
-      CourseId: courseId
+      courseId: courseId
     },
     order: [['updatedAt', 'DESC']]
   }).then(function(result) {
