@@ -115,8 +115,10 @@ angular.module('scape-home')
         strokes: params.input.strokes,
         courseId: this.currentId
       };
-      this.reviewPost.post(review)
       //Make post request
+      this.reviewPost.post(review)
+      //Make get request
+      this.fetchReviews.search(this.currentId, this.handleReviewFetch);
 
     }
 
