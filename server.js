@@ -27,7 +27,7 @@ app.listen(port);
 //   },
 //   {
 //     name: 'ESTABROOK',
-//     imageUrl: 'https://www.pdga.com/files/styles/large/public/course_photos/IMG_1670a.JPG?itok=K-yJg4q5',
+//     imageUrl: 'lib/img/estabrook.jpg',
 //     description: "East-side urban disc golf along the Estabrook parkway",
 //     holes: 18,
 //     isFree: false,
@@ -38,7 +38,7 @@ app.listen(port);
 //   },
 //   {
 //     name: 'DRETZKA',
-//     imageUrl: 'https://www.pdga.com/files/course_maps/dretzka_winter_wi_map.jpg',
+//     imageUrl: 'lib/img/dretzka.jpg',
 //     description: "Huge disc golf/non-disc golf complex with two playable courses",
 //     holes: 27,
 //     isFree: false,
@@ -54,63 +54,63 @@ app.listen(port);
 //         text: "Loved it. Got an ace on hole #14.",
 //         strokes: -5,
 //         rating: 5,
-//         CourseId: 1
+//         courseId: 1
 //       },
 //       {
 //         username: 'McBoyle',
 //         text: "This course is cool...if you're a baby. Not very challenging",
 //         strokes: -1,
 //         rating: 2,
-//         CourseId: 1
+//         courseId: 1
 //       },
 //       {
 //         username: 'The waitress',
 //         text: "First time disc golfing. Not sure why there were so many police parked here.",
 //         strokes: 5,
 //         rating: 4,
-//         CourseId: 1
+//         courseId: 1
 //       },
 //       {
 //         username: 'Dennis',
 //         text: "Almost as great as me. Always room for improvement :D",
 //         strokes: -2,
 //         rating: 4,
-//         CourseId: 2
+//         courseId: 2
 //       },
 //       {
 //         username: 'Ponderosa',
 //         text: "Not the easiest, unlike my ex",
 //         strokes: 0,
 //         rating: 4,
-//         CourseId: 2
+//         courseId: 2
 //       },
 //       {
 //         username: 'The waitress',
 //         text: "Did anyone see Dennis here? <3",
 //         strokes: 10,
 //         rating: 4,
-//         CourseId: 2
+//         courseId: 2
 //       },
 //       {
 //         username: 'Frank',
 //         text: "Lost rumham on hole #5, plz dm me if found",
 //         strokes: 4,
 //         rating: 3,
-//         CourseId: 3
+//         courseId: 3
 //       },
 //       {
 //         username: 'Charlie',
 //         text: "Disc golfing just makes sense to me",
 //         strokes: -11,
 //         rating: 5,
-//         CourseId: 3
+//         courseId: 3
 //       },
 //       {
 //         username: 'The waitress',
 //         text: "Got creeped on by a charlie again, gross",
 //         strokes: 13,
 //         rating: 1,
-//         CourseId: 3
+//         courseId: 3
 //       }
 
 

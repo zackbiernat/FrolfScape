@@ -1,6 +1,7 @@
 var express = require('express');
 var cors = require('cors');
 var app = express();
+var bodyParser = require('body-parser');
 var Sequelize = require('sequelize');
 var sequelize = new Sequelize('FrolfScape', 'zack', 'password', { dialect: 'sqlite', storage: 'lib/data/dataset.sqlite' });
 
@@ -22,18 +23,22 @@ const Reviews = sequelize.define('Reviews', {
   username: Sequelize.STRING,
   text: Sequelize.STRING,
   strokes: Sequelize.INTEGER,
-  rating: Sequelize.INTEGER
+  rating: Sequelize.INTEGER,
+  courseId: Sequelize.INTEGER
 });
 
-Reviews.belongsTo(Courses);
+//Reviews.belongsTo(Courses);
 
 //allow for CORS headers on response
 app.use(cors());
+//parse data into manageable JSON
+app.use(bodyParser.json());
+//app.use(express.json());
+
 app.use(express.static(__dirname + "/FrolfScape"));
 
 app.get('/courses', function(req, res, next) {
   let results = [];
-  console.log(req.query);
   let query = req.query.name;
   if (!query) {
     console.log('No query made, sending all data');
@@ -66,15 +71,14 @@ app.get('/courses', function(req, res, next) {
 app.get('/reviews', function(req, res, next) {
 
   let results = [];
-  console.log(req.query);
   let courseId = req.query.courseId;
 
   Reviews.findAll({
     where: {
       CourseId: courseId
-    }
+    },
+    order: [['updatedAt', 'DESC']]
   }).then(function(result) {
-    console.log("result", result)
     for (var i = 0; i < result.length; i++) {
       results.push(result[i].dataValues);
     }
@@ -82,6 +86,18 @@ app.get('/reviews', function(req, res, next) {
     res.send(results);
   })
 
+});
+
+app.post('/reviews',
+  function(req, res) {
+    Reviews.create({
+      username: req.body.username,
+      text: req.body.text,
+      strokes: req.body.strokes,
+      rating: req.body.rating,
+      courseId: req.body.courseId
+    })
+    res.send('Received post')
 });
 
 module.exports = {
