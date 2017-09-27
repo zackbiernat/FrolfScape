@@ -4,9 +4,17 @@ body {
   background: #f1f1f1;
 }
 
+:root {
+  --main1: #9AF32D;
+  --main2: #ADF554;
+  --main3: #C3F982;
+  --main4: #85F001;
+  --main5: #73D100;
+}
+
 .navbar {
-  background: #fff;
-  margin-bottom: 20px;
+  background: var(--main1);
+  margin-bottom: 0px;
 }
 
 .navbar img {
@@ -24,56 +32,17 @@ body {
   width: 80%
 }
 .search-bar .btn {
-  border-radius: 2px;
-  border-color: #d3d3d3;
-  background: #f8f8f8;
+  border-radius: 3px;
+  border-color: var(--main2);
+  background: var(--main3);
   width: 20%;
   margin-left: -1px;
 }
 
 .search-bar .btn:hover {
-  border-color: #c6c6c6;
-  background: #f0f0f0;
+  border-color: var(--main2);
+  background: var(--main2);
   box-shadow: 0 1px 0 rgba(0,0,0,0.10);
-}
-
-.video-player {
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
-.video-player-details {
-  background: #fff;
-  padding: 8px;
-  border: 0;
-  box-shadow: 0 1px 2px rgba(0,0,0,.1);
-  margin-top: 10px;
-}
-
-.video-list {
-  background: #fff;
-  padding: 8px;
-  border: 0;
-  box-shadow: 0 1px 2px rgba(0,0,0,.1);
-}
-
-.video-list-entry {
-  font-size: 16px;
-  padding: 8px;
-}
-
-.video-list-entry-title {
-  font-weight: bold;
-}
-
-.video-list-entry-title:hover {
-  color: #e62117;
-  cursor: pointer;
-}
-
-.video-list-entry-detail {
-  font-size: 12px;
-  color: #999;
 }
 
 .loading {
@@ -84,23 +53,53 @@ body {
   padding-left: 20px;
 }
 
+.headline {
+  background-color: var(--main1);
+  margin-bottom: 0px !important;
+}
+
 #entry-card {
-  width: 50px;
-  height: 50px;
+  width: 40%;
+  height: 40%;
+  background-color: var(--main-color);
 }
 
 #head-card {
-  width: 50%;
-  height: 50%;
+  width: 80%;
+  height: 80%;
 }
 
 .nearby-list {
+  font-size: 22px;
   padding: 10px;
+
 }
 
-.small-heart {
-  width: 10px;
-  height: 10px;
+.list-item {
+  align-content: center !important;
+  width: 90%;
+  padding: 20px;
+  background-color: var(--main5) !important;
+  border-style: solid;
+  border-width: 15px !important;
+  border-color: var(--main2) !important;
+  border-radius: 15px 50px 15px 50px !important;
+}
+
+.nav-left {
+  background-color: var(--main3);
+  border-style: solid;
+  border-width: 20px !important;
+  border-color: var(--main2) !important;
+}
+
+.head-mid {
+  padding: 20px;
+  background-color: var(--main1) !important;
+  border-style: solid;
+  border-width: 20px !important;
+  border-left-width: 0px !important;
+  border-color: var(--main2) !important;
 }
 
 .review-list-entry {

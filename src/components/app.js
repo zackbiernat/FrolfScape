@@ -9,7 +9,9 @@ angular.module('scape-home')
     this.search = function(query, callback) {
       let urlString = 'http://127.0.0.1:3000/courses'
       if (query) {
+        query = query.toUpperCase();
         urlString += '?name='+query
+        console.log(query)
       }
       console.log('this guy', urlString)
       $http.get(urlString,
@@ -23,31 +25,59 @@ angular.module('scape-home')
           console.log('response', response);
           callback(response.data);
       }, function errorCallback(response) {
-          // called asynchronously if an error occurs
-          // or server returns response with an error status.
+          console.log('Could not find any courses');
         });
-      console.log(query);
     }
   })
 
-  .controller('AppController', function(courseFetcher) {
+  //updates reviews
+  .service('reviewFetcher', function($http, $window) {
+    this.search = function(id, callback) {
+      let urlString = 'http://127.0.0.1:3000/reviews'
+      if (!id) {
+        console.log("Huge error")
+      } else {
+        urlString += '?courseId='+id;
+        $http.get(urlString,
+        {
+          headers: {
+            'access-control-allow-origin': '*',
+            //'Range': 'data=0-1' TODO, figure out range
+          }
+        }
+      ).then(function successCallback(response) {
+          console.log('response', response.data);
+          callback(response.data);
+      }, function errorCallback(response) {
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+        });
+    }
+  }
+  })
+
+
+  .controller('AppController', function(courseFetcher, reviewFetcher) {
     //define methods to be passed down
 
     //search engine
     this.fetchService = courseFetcher;
     this.fetchResults = (data) => {
-      console.log('this',this)
       this.courses = data;
       this.currentCourse = data[0];
-      // this.reviews = this.currentCourse.reviews; TODO fix reviews
+      this.currentId = this.currentCourse.id;
     };
 
     //clickable course selector
     this.selectCourse = (course) => {
       this.currentCourse = course;
-      //this.reviews = this.currentCourse.reviews; TODO fix reviews
     };
 
+
+    //review fetcher for current course
+    this.handleReviewFetch = (data) => {
+      this.reviews = data;
+    }
     //review post handler
     this.renderPost = (params) => {
       let review = {
@@ -56,11 +86,13 @@ angular.module('scape-home')
         rating: params.input.rating,
         strokes: params.input.strokes
       };
+      //Make post request
 
-      this.currentCourse.reviews.unshift(review);
     }
 
-    courseFetcher.search('Dretzka', this.fetchResults);
+    courseFetcher.search(null, this.fetchResults);
+    console.log('current course id', this.currentId)
+    reviewFetcher.search(1, this.handleReviewFetch)
 
   })
 

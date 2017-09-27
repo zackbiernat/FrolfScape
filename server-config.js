@@ -4,21 +4,34 @@ var app = express();
 var Sequelize = require('sequelize');
 var sequelize = new Sequelize('FrolfScape', 'zack', 'password', { dialect: 'sqlite', storage: 'lib/data/dataset.sqlite' });
 
+// var sequelizeTransforms = require('sequelize-transforms');
+// sequelizeTransforms(sequelize);
+
 const Courses = sequelize.define('Courses', {
   name: Sequelize.STRING,
   imageUrl: Sequelize.STRING,
   description: Sequelize.STRING,
   holes: Sequelize.INTEGER,
   isFree: Sequelize.BOOLEAN,
-  address: Sequelize.STRING
+  address: Sequelize.STRING,
+  city: Sequelize.STRING,
+  state: Sequelize.STRING
 });
 
-let results = [];
+const Reviews = sequelize.define('Reviews', {
+  username: Sequelize.STRING,
+  text: Sequelize.STRING,
+  strokes: Sequelize.INTEGER,
+  rating: Sequelize.INTEGER
+});
+
+Reviews.belongsTo(Courses);
 
 //allow for CORS headers on response
 app.use(cors());
 
 app.get('/courses', function(req, res, next) {
+  let results = [];
   console.log(req.query);
   let query = req.query.name;
   if (!query) {
@@ -33,10 +46,7 @@ app.get('/courses', function(req, res, next) {
     if (query.charAt(query.length -1) === '/') {
       query = query.slice(0, -1);
     }
-    // sequelize.query("SELECT * FROM `Courses` WHERE name = `query`", { type: sequelize.QueryTypes.SELECT})
-    // .then(course => {
-    //   results.push(course)
-    // })
+
     Courses.findAll({
       where: {
         name: query
@@ -51,7 +61,31 @@ app.get('/courses', function(req, res, next) {
 
 });
 
+
+app.get('/reviews', function(req, res, next) {
+
+  let results = [];
+  console.log(req.query);
+  let courseId = req.query.courseId;
+
+  Reviews.findAll({
+    where: {
+      CourseId: courseId
+    }
+  }).then(function(result) {
+    console.log("result", result)
+    for (var i = 0; i < result.length; i++) {
+      results.push(result[i].dataValues);
+    }
+  }).then(function() {
+    res.send(results);
+  })
+
+});
+
 module.exports = {
   app: app,
-  Courses: Courses
+  Courses: Courses,
+  Reviews: Reviews
+
 };
