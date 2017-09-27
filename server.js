@@ -16,7 +16,7 @@ app.listen(port);
 // Courses.bulkCreate([
 //   {
 //     name: 'ABENDSHCEIN',
-//     imageUrl: 'https://www.pdga.com/files/course_maps/Abendschein_New_Disc_Golf_Course_Layout_2013.jpg',
+//     imageUrl: 'lib/img/abendschein.jpg',
 //     description: "Oak Creek's disc golf course.",
 //     holes: 18,
 //     isFree: true,

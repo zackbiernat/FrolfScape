@@ -1,20 +1,25 @@
-<div id="app container">
-<h1 class="display-3 headline">FrolfScape: The disc golfer's caddy app</h1>
-
-  <nav class="navbar">
-    <div class="col-md-6 col-md-offset-3"> Find for more disc golf destinations!
-      <search-bar service="$ctrl.fetchService" result="$ctrl.fetchResults"><h5><em>Search Bar</em></h5></search-bar>
+<div id="container">
+  <div class="row">
+    <div class="col-md-8">
+      <h1 class="jumbotron headline">FrolfScape</h1>
+      <div class="tagline"><h5>The disc golfer's caddy app</h5></div>
     </div>
-  </nav>
+
+      <div class="col-md-3">
+        <search-bar service="$ctrl.fetchService" result="$ctrl.fetchResults"><h5><em>Search Bar</em></h5></search-bar>
+      </div>
+  </div>
   <div class="row">
     <div class="col-md-3 nav-left">
      <h3 class="nearby-list">Courses near here</h3>
       <nearby-courses on-click="$ctrl.selectCourse" courses="$ctrl.courses"><h5><em>shows nearby courses</em></h5></nearby-courses>
     </div>
-    <div class="col-md-7 head-mid">
-      <head-course service="$ctrl.renderPost" course="$ctrl.currentCourse"><h5><em>Course Headline</em></h5></head-course>
+    <div class="col-md-6 head-mid">
+      <head-course service="$ctrl.renderPost" course="$ctrl.currentCourse" reviews="$ctrl.fetchReviews" handler="$ctrl.handleReviewFetch"><h5><em>Course Headline</em></h5></head-course>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-3 nav-right">
+      <h3 class="nearby-list">Discer's reviews</h3>
+
       <review-list on-click="$ctrl.selectUser" users="$ctrl.users" reviews="$ctrl.reviews"><h5><em>shows some reviews</em></h5></review-list>
     </div>
 

@@ -66,18 +66,25 @@ angular.module('scape-home')
       this.courses = data;
       this.currentCourse = data[0];
       this.currentId = this.currentCourse.id;
+      this.fetchReviews.search(this.currentId, this.handleReviewFetch);
+
     };
 
     //clickable course selector
     this.selectCourse = (course) => {
       this.currentCourse = course;
+      this.currentId = this.currentCourse.id;
+      this.fetchReviews.search(this.currentId, this.handleReviewFetch);
+
     };
 
 
     //review fetcher for current course
+    this.fetchReviews = reviewFetcher;
     this.handleReviewFetch = (data) => {
       this.reviews = data;
     }
+
     //review post handler
     this.renderPost = (params) => {
       let review = {
@@ -92,7 +99,6 @@ angular.module('scape-home')
 
     courseFetcher.search(null, this.fetchResults);
     console.log('current course id', this.currentId)
-    reviewFetcher.search(1, this.handleReviewFetch)
 
   })
 

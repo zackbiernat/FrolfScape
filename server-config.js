@@ -29,6 +29,7 @@ Reviews.belongsTo(Courses);
 
 //allow for CORS headers on response
 app.use(cors());
+app.use(express.static(__dirname + "/FrolfScape"));
 
 app.get('/courses', function(req, res, next) {
   let results = [];

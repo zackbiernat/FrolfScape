@@ -5,7 +5,9 @@ angular.module('scape-home')
 
     bindings: {
       course: '<',
-      service: '<'
+      service: '<',
+      reviews: '<',
+      handler: '<'
     },
 
     templateUrl: 'src/templates/headCourse.html',
@@ -18,5 +20,9 @@ angular.module('scape-home')
       this.service(outer);
       //outer.onClick(target);
     };
+    this.handleReview = function() {
+
+      this.reviews(outer.id, this.handler);
+    }
 
   });
